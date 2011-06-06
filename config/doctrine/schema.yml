@@ -1,0 +1,17 @@
+Quote:
+  actAs:
+    Timestampable: ~ 
+    Validate: ~
+  columns:
+    on_dit: 
+      type: string()
+      notnull: true
+    on_dit_pas: 
+      type: string()
+      notnull: true
+    auteur:
+      type: string(255)  
+      notnull: true
+    mail:
+      type: string(255)  
+      notnull: true
