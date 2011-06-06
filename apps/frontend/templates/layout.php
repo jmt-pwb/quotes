@@ -9,7 +9,14 @@
     <?php include_javascripts() ?>
   </head>
   <body>
+  <div>
   	<?php include_partial('global/menu') ?>
-    <?php echo $sf_content ?>
+  </div>
+    <div style="float:left; width:600px; border: 1px solid red">
+  		<?php echo $sf_content ?>
+  	</div>
+  	<div style="float:left; width:200px; border: 1px solid red">
+  	<?php include_component('quote', 'quote')?>
+  	</div>
   </body>
 </html>
