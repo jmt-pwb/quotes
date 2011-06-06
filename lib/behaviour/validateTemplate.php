@@ -10,6 +10,11 @@ class Doctrine_Template_Validate extends Doctrine_Template
              ));
 	}
 	
+	
+	public function findValidQuotesTableProxy()
+	{
+		return $this->getInvoker()->getTable()->createQuery()->where('valide= ?', 1);
+	}
 }
 
 
