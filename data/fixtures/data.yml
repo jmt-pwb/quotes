@@ -1,0 +1,33 @@
+Quote:
+  Quote_1:
+    on_dit: CreationId
+    on_dit_pas: Autoincrement
+    auteur: maurice
+    mail: lol@free.fr
+    created_at: '2011-06-06 15:20:26'
+    updated_at: '2011-06-06 15:20:26'
+    valide: false
+  Quote_2:
+    on_dit: copier/coller
+    on_dit_pas: DRY
+    auteur: jean
+    mail: xx@free.fr
+    created_at: '2011-06-06 15:20:26'
+    updated_at: '2011-06-06 15:20:26'
+    valide: false
+  Quote_3:
+    on_dit: TBS
+    on_dit_pas: Template
+    auteur: alexis
+    mail: alexis@free.fr
+    created_at: '2011-06-06 15:20:26'
+    updated_at: '2011-06-06 15:20:26'
+    valide: true
+  Quote_4:
+    on_dit: mrdtt
+    on_dit_pas: 'mes reponse dans ton texte'
+    auteur: bill
+    mail: grosbill@test.fr
+    created_at: '2011-06-06 16:01:46'
+    updated_at: '2011-06-06 16:01:49'
+    valide: true
