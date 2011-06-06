@@ -12,5 +12,21 @@ class QuoteForm extends BaseQuoteForm
 {
   public function configure()
   {
+    $this->validatorSchema['mail'] = new sfValidatorAnd(array(
+      $this->validatorSchema['mail'],
+      new sfValidatorEmail(),
+    ));  	
+  	
+    $this->widgetSchema->moveField('on_dit', sfWidgetFormSchema::AFTER, 'on_dit_pas');
+    
+    $this->widgetSchema->setLabels(array(
+      'on_dit'    => 'Mais',
+      'auteur'      => 'L\'auteur',
+      'mail'   => 'Email',
+    ));
+    
+  	unset($this['created_at'],$this['updated_at'],$this['valide']);
+  	
+  	
   }
 }

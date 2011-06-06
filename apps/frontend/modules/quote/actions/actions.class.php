@@ -10,13 +10,26 @@
  */
 class quoteActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
+
+  
+  public function executeNew(sfWebRequest $request)	
   {
-    $this->forward('default', 'module');
+  	
+     $this->form = new QuoteForm();
+     if($request->getMethod()==sfWebRequest::POST)
+     {
+		$this->form->bind($request->getParameter($this->form->getName()));
+		if($this->form->isValid())
+		{
+			$this->form->save();
+			$this->redirect('@confirm_create');
+		}
+     }
+     
+  }
+  
+  public function executeConfirmCreate(sfWebRequest $request)	
+  {
+  	
   }
 }

@@ -5,7 +5,21 @@
 homepage:
   url:   /
   param: { module: accueil, action: index }
+  
+proposition:
+  url:  /proposition.html
+  param: 
+    module: quote
+    action: new
 
+  
+confirm_create:
+  url:  /merci.html
+  param: 
+    module: quote
+    action: confirmCreate
+    
+    
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
