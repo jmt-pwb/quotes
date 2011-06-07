@@ -3,7 +3,7 @@
 
 prod:
   .settings:
-    no_script_name:         true
+    no_script_name:         false
     logging_enabled:        false
 
 dev:
@@ -25,19 +25,12 @@ test:
 all:
   .settings:
     # Form security secret (CSRF protection)
-    csrf_secret:            5045d403ae65feb3e7ab9f6ebba9429dc2eaae15
+    csrf_secret:            767caa5db28f352565554c32393dc8fbd0911fac
 
     # Output escaping settings
     escaping_strategy:      true
     escaping_method:        ESC_SPECIALCHARS
-    standard_helpers:       [Partial, Cache, Pagination]
-    enabled_modules:        [default, sfGuardAuth]
-    
-    login_module:           sfGuardAuth
-    login_action:           signin
-        
-    secure_module:          sfGuardAuth
-    secure_action:          secure
+    enabled_modules:        [default, sfGuardGroup, sfGuardUser, sfGuardPermission]
 
     # Enable the database manager
     use_database:           true

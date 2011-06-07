@@ -17,7 +17,30 @@ class accueilActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->quotes=Doctrine_Core::getTable('Quote')->findValidQuotes()->orderBy('updated_at')
+    $this->findQuotes(10);
+    
+  }
+  
+  public function executeIndexAll(sfWebRequest $request)
+  {
+  	$this->pager = new sfDoctrinePager(
+      'Quote',
+      sfConfig::get('app_max_page')
+    );
+    $this->pager->setQuery($this->findQuotes(sfConfig::get('app_max_page')));
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+    $this->quotes = $this->pager;
+  }
+  
+  protected function findQuotes($max)
+  {
+    $this->quotes=Doctrine_Core::getTable('Quote')
+    ->findValidQuotes()
+    ->orderBy('updated_at')
+    ->limit($max)
     ->execute();
   }
+  
+  
 }

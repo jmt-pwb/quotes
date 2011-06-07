@@ -15,6 +15,13 @@ class Doctrine_Template_Validate extends Doctrine_Template
 	{
 		return $this->getInvoker()->getTable()->createQuery()->where('valide= ?', 1);
 	}
+	
+	
+	public function validateTableProxy(array $ids)
+	{
+		return $this->getInvoker()->getTable()->createQuery()->update()->whereIn('id', $ids)->set('valide', 1)->execute();
+	}
+	
 }
 
 

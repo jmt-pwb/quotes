@@ -1,32 +1,20 @@
+quote:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                quote
+    module:               quote
+    prefix_path:          /quote
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
 homepage:
   url:   /
-  param: { module: accueil, action: index }
-  
-proposition:
-  url:  /proposition.html
-  param: 
-    module: quote
-    action: new
+  param: { module: quote, action: index }
 
-  
-confirm_create:
-  url:  /merci.html
-  param: 
-    module: quote
-    action: confirmCreate
-    
-
-all_quotes:
-  url:  /toutes.html
-  param: 
-    module: accueil
-    action: indexAll
-
-    
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
