@@ -32,4 +32,20 @@ class quoteActions extends sfActions
   {
   	
   }
+  
+  public function executeShow(sfWebRequest $request)	
+  {
+  	$id=$request->getParameter('id');
+  	$this->quote=Doctrine_Core::getTable('Quote')
+  	->findValidQuotes()
+  	->addWhere('id = ?', $id)
+    ->execute()->getFirst();
+    
+    if(!$this->quote)
+    {
+    	$this->redirect404();
+    }
+  }
+  
+  
 }

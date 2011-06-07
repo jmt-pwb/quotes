@@ -10,6 +10,10 @@
  */
 class accueilActions extends sfActions
 {
+	public function preExecute()
+	{
+		$this->activer_lien_commentaire=true;
+	}
  /**
   * Executes index action
   *

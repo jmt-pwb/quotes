@@ -13,7 +13,7 @@ class quoteComponents extends sfComponents {
     	$this->auteur=$quotes[$num_quotes]['auteur'];
     	$this->on_dit=$quotes[$num_quotes]['on_dit'];
     	$this->on_dit_pas=$quotes[$num_quotes]['on_dit_pas'];
-    	
-    	
+    	$this->id=$quotes[$num_quotes]['id'];
+    	$this->activer_lien_commentaire=true;
 	}
 }
