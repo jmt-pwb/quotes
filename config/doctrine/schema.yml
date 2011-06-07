@@ -15,3 +15,23 @@ Quote:
     mail:
       type: string(255)  
       notnull: true
+
+Comment:
+  actAs:
+    Timestampable: ~ 
+    Validate: ~
+  columns:
+    quote_id:
+      type: integer
+      notnull: true
+    contenu: 
+      type: string()
+      notnull: true
+    auteur:
+      type: string(255)  
+      notnull: true
+    mail:
+      type: string(255)  
+      notnull: false
+  relations:
+    Quote: { onDelete: CASCADE, local: quote_id, foreign: id }
