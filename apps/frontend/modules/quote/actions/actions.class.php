@@ -30,7 +30,7 @@ class quoteActions extends sfActions
   
   public function executeConfirmCreate(sfWebRequest $request)	
   {
-  	
+    
   }
   
   public function executeShow(sfWebRequest $request)	
@@ -45,7 +45,15 @@ class quoteActions extends sfActions
     {
     	$this->redirect404();
     }
+    $this->form = new CommentForm();
+    if($request->getMethod()==sfWebRequest::POST)
+    {
+		$this->form->bind($request->getParameter($this->form->getName()));
+		if($this->form->isValid())
+		{
+			$this->form->save();
+			$this->redirect('@confirm_create');
+		}
+    }
   }
-  
-  
 }

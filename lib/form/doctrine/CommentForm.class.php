@@ -12,5 +12,17 @@ class CommentForm extends BaseCommentForm
 {
   public function configure()
   {
+    $this->validatorSchema['mail'] = new sfValidatorAnd(array(
+    $this->validatorSchema['mail'],
+      new sfValidatorEmail(),
+    ));  	
+  	
+    $this->widgetSchema->moveField('contenu', sfWidgetFormSchema::AFTER, 'mail');
+    
+    $this->widgetSchema->setLabels(array(
+      'mail'   => 'Email',
+    ));
+    
+  	unset($this['created_at'],$this['updated_at'],$this['valide']);
   }
 }
