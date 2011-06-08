@@ -16,6 +16,7 @@ abstract class BaseCommentForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
+      'quote_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Quote'), 'add_empty' => false)),
       'contenu'    => new sfWidgetFormTextarea(),
       'auteur'     => new sfWidgetFormInputText(),
       'mail'       => new sfWidgetFormInputText(),
@@ -26,6 +27,7 @@ abstract class BaseCommentForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'quote_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Quote'))),
       'contenu'    => new sfValidatorString(),
       'auteur'     => new sfValidatorString(array('max_length' => 255)),
       'mail'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),

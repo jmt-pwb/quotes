@@ -12,6 +12,11 @@ class CommentForm extends BaseCommentForm
 {
   public function configure()
   {
+  	if(!$this->getOption('quote_id'))
+  	{
+  		throw new sfException('CommentForm doit avoir l\'option quote_id');
+  	}
+  	
     $this->validatorSchema['mail'] = new sfValidatorAnd(array(
     $this->validatorSchema['mail'],
       new sfValidatorEmail(),
@@ -23,6 +28,8 @@ class CommentForm extends BaseCommentForm
       'mail'   => 'Email',
     ));
     
-  	unset($this['created_at'],$this['updated_at'],$this['valide']);
+    $this->getObject()->setQuoteId($this->getOption('quote_id'));
+    
+  	unset($this['created_at'],$this['updated_at'],$this['valide'], $this['quote_id']);
   }
 }

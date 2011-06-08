@@ -16,26 +16,16 @@ class quoteActions extends sfActions
   {
   	
      $this->form = new QuoteForm();
-     if($request->getMethod()==sfWebRequest::POST)
-     {
-		$this->form->bind($request->getParameter($this->form->getName()));
-		if($this->form->isValid())
-		{
-			$this->form->save();
-			$this->redirect('@confirm_create');
-		}
-     }
+     $this->enregistrer_formulaire($request);
      
-  }
-  
-  public function executeConfirmCreate(sfWebRequest $request)	
-  {
-    
   }
   
   public function executeShow(sfWebRequest $request)	
   {
+  	// Gestion affichage de la quote
   	$id=$request->getParameter('id');
+  	$this->id=$id;
+  	
   	$this->quote=Doctrine_Core::getTable('Quote')
   	->findValidQuotes()
   	->addWhere('id = ?', $id)
@@ -45,15 +35,37 @@ class quoteActions extends sfActions
     {
     	$this->redirect404();
     }
-    $this->form = new CommentForm();
+    
+    
+    // Gestion affichage des commentaires
+    $this->comments=Doctrine_Core::getTable('Comment')
+    	->findValidQuotes()
+    	->addWhere('quote_id = ?', $id)
+    	->execute();
+    
+    // Gestion formulaire de soumission de commentaire
+    $this->form = new CommentForm(null, array('quote_id' => $id));
+    $this->enregistrer_formulaire($request);
+  }
+  
+  protected function enregistrer_formulaire(sfWebRequest $request)
+  {
     if($request->getMethod()==sfWebRequest::POST)
     {
-		$this->form->bind($request->getParameter($this->form->getName()));
-		if($this->form->isValid())
-		{
-			$this->form->save();
-			$this->redirect('@confirm_create');
-		}
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if($this->form->isValid())
+      {
+        $this->form->save();
+        $this->getUser()->setFlash('notice', 'Ajout enregistré.');
+        if($this->getActionName()=='show')
+        {
+          $this->redirect('quote/show?id='.$request->getParameter('id'));
+        }
+        elseif($this->getActionName()=='new')
+        {
+          $this->redirect('quote/new');
+        }   
+      }
     }
   }
 }

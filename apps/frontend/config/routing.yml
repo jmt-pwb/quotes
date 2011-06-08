@@ -13,12 +13,6 @@ proposition:
     action: new
 
   
-confirm_create:
-  url:  /merci.html
-  param: 
-    module: quote
-    action: confirmCreate
-    
 
 all_quotes:
   url:  /toutes.html

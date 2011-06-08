@@ -13,6 +13,7 @@ abstract class BaseCommentFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
+      'quote_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Quote'), 'add_empty' => true)),
       'contenu'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'auteur'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mail'       => new sfWidgetFormFilterInput(),
@@ -22,6 +23,7 @@ abstract class BaseCommentFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
+      'quote_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Quote'), 'column' => 'id')),
       'contenu'    => new sfValidatorPass(array('required' => false)),
       'auteur'     => new sfValidatorPass(array('required' => false)),
       'mail'       => new sfValidatorPass(array('required' => false)),
@@ -48,6 +50,7 @@ abstract class BaseCommentFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'         => 'Number',
+      'quote_id'   => 'ForeignKey',
       'contenu'    => 'Text',
       'auteur'     => 'Text',
       'mail'       => 'Text',
