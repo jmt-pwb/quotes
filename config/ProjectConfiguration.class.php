@@ -9,5 +9,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   {
     $this->enablePlugins('sfDoctrinePlugin');
     $this->enablePlugins('sfDoctrineGuardPlugin');
+    
+     $this->dispatcher->connect('mail.send_mail', array('mailDispatcher', 'sendMail'));
   }
 }

@@ -1,0 +1,4 @@
+MailMessage:
+  actAs: { Timestampable: ~ }
+  columns:
+    message: { type: clob, notnull: true }

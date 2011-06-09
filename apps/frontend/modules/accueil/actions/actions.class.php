@@ -10,6 +10,10 @@
  */
 class accueilActions extends sfActions
 {
+	public function preExecute()
+	{
+		$this->activer_lien_commentaire=true;
+	}
  /**
   * Executes index action
   *
@@ -17,8 +21,7 @@ class accueilActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->findQuotes(10);
-    
+    $this->quotes = $this->findQuotes(10)->execute();
   }
   
   public function executeIndexAll(sfWebRequest $request)
@@ -35,11 +38,10 @@ class accueilActions extends sfActions
   
   protected function findQuotes($max)
   {
-    $this->quotes=Doctrine_Core::getTable('Quote')
+    return Doctrine_Core::getTable('Quote')
     ->findValidQuotes()
     ->orderBy('updated_at')
-    ->limit($max)
-    ->execute();
+    ->limit($max);
   }
   
   

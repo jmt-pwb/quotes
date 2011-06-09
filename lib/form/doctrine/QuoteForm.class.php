@@ -10,8 +10,15 @@
  */
 class QuoteForm extends BaseQuoteForm
 {
+  
+  
   public function configure()
   {
+    if(!($this->getOption('dispatcher') instanceof sfEventDispatcher))
+    {
+      throw new sfException('Il manque l\'option dispatcher');
+    }
+    
     $this->validatorSchema['mail'] = new sfValidatorAnd(array(
       $this->validatorSchema['mail'],
       new sfValidatorEmail(),
@@ -28,5 +35,17 @@ class QuoteForm extends BaseQuoteForm
   	unset($this['created_at'],$this['updated_at'],$this['valide']);
   	
   	
+  }
+  
+  public function save($con = null)
+  {
+  	$object = parent::save($con);
+  	
+  	$sujet = 'Merci d\'avoir posté';
+  	$message = 'Coucou, valide moi ton message';
+  	
+  	$this->getOption('dispatcher')->notify(new sfEvent($object->getMail(), 'mail.send_mail', array('body' => $message, 'sujet' => $sujet)));
+  	
+  	return $object;
   }
 }
