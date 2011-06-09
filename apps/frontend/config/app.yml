@@ -1,2 +1,3 @@
 all:
   max_page: 3
+  enable_remember_me: on

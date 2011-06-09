@@ -21,6 +21,11 @@ class CommentForm extends BaseCommentForm
     $this->validatorSchema['mail'],
       new sfValidatorEmail(),
     ));  	
+    
+    $this->validatorSchema['contenu'] = new sfValidatorAnd(array(
+    $this->validatorSchema['contenu'],
+      new validatorAntiSpam(),
+    ));
   	
     $this->widgetSchema->moveField('contenu', sfWidgetFormSchema::AFTER, 'mail');
     
@@ -29,6 +34,7 @@ class CommentForm extends BaseCommentForm
     ));
     
     $this->getObject()->setQuoteId($this->getOption('quote_id'));
+    $this->getObject()->setAuteur($this->getOption('auteur'));
     
   	unset($this['created_at'],$this['updated_at'],$this['valide'], $this['quote_id']);
   }

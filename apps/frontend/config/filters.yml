@@ -10,5 +10,9 @@ security:  ~
 
 # insert your own filters here
 
+remember:                 # Filters need a unique name
+  class: rememberFilter
+
 cache:     ~
 execution: ~
+

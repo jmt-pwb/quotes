@@ -26,7 +26,7 @@ test:
 dev:
   mailer:
     param:
-      delivery_strategy: none
+      delivery_strategy: spool
 
 all:
   routing:
@@ -40,3 +40,9 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+  mailer:
+    class: sfMailer
+    param:
+      delivery_strategy: spool
+      spool_class:       Swift_DoctrineSpool
+      spool_arguments:   [ MailMessage, message ]
